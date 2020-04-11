@@ -19,6 +19,8 @@ public class User  implements UserDetails {
     private String username;
     private String password;
     private boolean active;
+    private String email;
+    private String activationCode;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))  // описывает что данное поле будет храниться в отдельной таблице /кот. не описан маппинг
