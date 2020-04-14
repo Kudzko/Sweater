@@ -14,14 +14,27 @@
        aria-controls="collapseExample">
         Add new message
     </a>
-    <div class="collapse" id="collapseExample">
+    <div class="collapse
+                <#if message??>show</#if>" id="collapseExample">
         <div class="form-group mt-3">
             <form method="post" action="/main" enctype="multipart/form-data">
                 <div class="form-group">
-                    <input type="text" name="text" class="form-control" placeholder="Enter message/ Введите сообщение"/>
+                    <input type="text" name="text" class="form-control ${(textError??)?string('is-invalid', '')}"
+                     value="<#if message??>${message.text}</#if>" placeholder="Enter message/ Введите сообщение"/>
+                    <#if textError??>
+                        <div class="invalid-feedback">
+                            ${textError}
+                        </div>
+                    </#if>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="tag" class="form-control" placeholder="Tag/ Тэг"/>
+                    <input type="text" name="tag" class="form-control" placeholder="Tag/ Тэг"
+                           value="<#if message??>${message.tag}</#if>"/>
+                    <#if tagError??>
+                        <div class="invalid-feedback">
+                            ${tagError}
+                        </div>
+                    </#if>
                 </div>
                 <div class="form-group">
                     <div class="custom-file">
