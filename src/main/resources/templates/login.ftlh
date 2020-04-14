@@ -7,6 +7,10 @@
             ${Session.SPRING_SECURITY_LAST_EXCEPTION}
         </div>
     </#if>
-    ${message?ifExists}
+    <#if message??>
+        <div class="alert alert-${messageType}" role="alert">
+            ${message}
+        </div>
+    </#if>
     <@l.login "/login" true/>
 </@c.page>
